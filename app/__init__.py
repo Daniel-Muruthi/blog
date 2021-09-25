@@ -6,7 +6,7 @@ bootstrap = Bootstrap()
 
 def create_app(config_name):
     # Initializing application
-    app = Flask(__name__, template_folder='templates', static_folder='static')
+    app = Flask(__name__, template_folder='templates', static_folder='static', instance_relative_config = True)
 
     # Creating the app configurations
     app.config.from_object(config_options[config_name])
