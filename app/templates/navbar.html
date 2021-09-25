@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
 </body>
-<nav class="navbar navbar-default navbar-static-top" role="navigation">
-    <div class="container-fluid">
+{% block content %}
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid d-inline">
         <a href="/" class="navbar-brand navbar-logo mt-0 mx-3">Le Blunt</a>
         <div class="collapse navbar-collapse" >
             <ul class="nav navbar-nav d-inline" >
@@ -16,7 +18,7 @@
                 <li class="mx-3 d-block"><a href="/">About</a></li>
                 <li class="mx-3 d-block"><a href="/">Contacts</a></li>
             </ul>
-            <div class="navbar navbar-nav navbar-right d-inline" style="display: flex !important; align-items:center;">
+            <div class="navbar navbar-nav navbar-right d-inline">
                 <div class="my-auto mx-3 signup d-inline" style="margin-right:1rem;">
                     <a href="" class="btn btn-success ">Sign Up</a>
                 </div>
@@ -28,5 +30,6 @@
             </div>
         </div>
     </div>
-</nav>
+</div>
+{% endblock %}
 </html>
