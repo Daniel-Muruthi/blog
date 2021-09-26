@@ -15,7 +15,7 @@ def login():
             login_user(user, login_form.remember.data)
 
             #will probably need to change here to redirect to userpage
-            return redirect(request.args.get('next') or url_for('main.userpage'))
+            return redirect(request.args.get('next') or url_for('main.userblogpage'))
         flash('Invalid username or Password')
     title = "Le Blunt Login"
     return render_template('auth/login.html', login_form = login_form, title = title)
