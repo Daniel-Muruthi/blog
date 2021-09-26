@@ -32,3 +32,15 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return f'User {self.username}'
+
+
+#api endpoint class
+
+class Quote_Body:
+
+    randomQuote = []
+
+    def __init__(self, quote, author, permalink):
+        self.quote = quote
+        self.author = author
+        self.permalink = permalink
