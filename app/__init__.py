@@ -5,6 +5,7 @@ from config import config_options
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_simplemde import SimpleMDE
+from flask_uploads import UploadSet,configure_uploads,IMAGES
 
 
 login_manager = LoginManager()
@@ -15,6 +16,9 @@ bootstrap = Bootstrap()
 db = SQLAlchemy()
 mail = Mail()
 simple = SimpleMDE()
+
+#Uploading Images
+photos = UploadSet('photos', IMAGES)
 
 def create_app(config_name):
     # Initializing application
@@ -37,6 +41,9 @@ def create_app(config_name):
 
     #initializing simple review editor
     simple.init_app(app)
+
+    # configuring uploadset
+    configure_uploads(app, photos)
 
     # Registering the blueprint
     from .main import main as main_blueprint

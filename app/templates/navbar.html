@@ -17,13 +17,16 @@
                 <li class="mx-3 d-block"><a href="/">Home</a></li>
                 <li class="mx-3 d-block"><a href="/">About</a></li>
                 <li class="mx-3 d-block"><a href="/">Contacts</a></li>
+                {% if current_user.is_authenticated %}
+                <li class="mx-3 d-block"><a href="{{url_for('main.userblogpage')}}">Blog</a></li>
+                {% endif %}
             </ul>
             <div class="navbar navbar-nav navbar-right signlog d-inline">
                 {% if current_user.is_authenticated %}
                 <h4 class="d-inline">{{ current_user.username }} </h4>
                 <img src="../static/images/profile.png" alt="user ppic" height="50px" width="50px" class="d-inline">
                 <div class="my-auto mx-3 signout d-inline">
-                    <a href="" class="btn btn-primary ">Create New Pitch</a>
+                    <a href="{{url_for('main.profile', uname=current_user.username)}}" class="btn btn-primary ">View Profile</a>
                 </div>
                 <div class="my-auto mx-3 signout d-inline">
                     <a href="{{url_for('auth.logout')}}" class="btn btn-primary ">Sign out</a>

@@ -17,6 +17,8 @@ class Config:
     SUBJECT_PREFIX = 'Le Blunt'
     SENDER_EMAIL = 'adinotutorials@gmail.com'
 
+    UPLOADED_PHOTOS_DEST = 'app/static/photos'
+
 class ProdConfig(Config):
     '''
     Production configuration child class
