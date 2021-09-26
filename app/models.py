@@ -16,7 +16,6 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(255), unique = True, index = True)
     passcode = db.Column(db.String(255))
 
-    minutepitches = db.relationship('NewPitch', backref = 'user', lazy = 'dynamic')
 
     
 
@@ -44,3 +43,14 @@ class Quote_Body:
         self.quote = quote
         self.author = author
         self.permalink = permalink
+
+# Role
+
+class Role(db.Model):
+    __tablename__ = 'roles'
+
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(255))
+
+    def __repr__(self):
+        return f'User {self.name}'

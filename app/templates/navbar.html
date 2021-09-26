@@ -18,15 +18,26 @@
                 <li class="mx-3 d-block"><a href="/">About</a></li>
                 <li class="mx-3 d-block"><a href="/">Contacts</a></li>
             </ul>
-            <div class="navbar navbar-nav navbar-right d-inline">
-                <div class="my-auto mx-3 signup d-inline" style="margin-right:1rem;">
+            <div class="navbar navbar-nav navbar-right signlog d-inline">
+                {% if current_user.is_authenticated %}
+                <h4 class="d-inline">{{ current_user.username }} </h4>
+                <img src="../static/images/profile.png" alt="user ppic" height="50px" width="50px" class="d-inline">
+                <div class="my-auto mx-3 signout d-inline">
+                    <a href="{{url_for('main.createpitch')}}" class="btn btn-primary ">Create New Pitch</a>
+                </div>
+                <div class="my-auto mx-3 signout d-inline">
+                    <a href="{{url_for('auth.logout')}}" class="btn btn-primary ">Sign out</a>
+                </div>
+                {% else %}
+                <div class="my-auto mx-3 signup d-inline">
                     <a href="{{url_for('auth.signup')}}" class="btn btn-success ">Sign Up</a>
                 </div>
-                <div class="my-auto mx-3 login d-inline" style="margin-right:1rem;">
+                <div class="my-auto mx-3 login d-inline">
                     <a href="{{url_for('auth.login')}}" class="btn btn-primary">
                         Log In
                     </a>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
