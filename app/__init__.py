@@ -6,6 +6,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from flask_simplemde import SimpleMDE
 from flask_uploads import UploadSet,configure_uploads,IMAGES
+from flask_admin import Admin, BaseView
 
 
 login_manager = LoginManager()
@@ -16,6 +17,7 @@ bootstrap = Bootstrap()
 db = SQLAlchemy()
 mail = Mail()
 simple = SimpleMDE()
+admin = Admin()
 
 #Uploading Images
 photos = UploadSet('photos', IMAGES)
@@ -32,6 +34,13 @@ def create_app(config_name):
 
     # Initalizing database
     db.init_app(app)
+
+    #Initializing Admin
+
+    admin.init_app(app)
+
+    
+    
 
     # Initializing login manager
     login_manager.init_app(app)

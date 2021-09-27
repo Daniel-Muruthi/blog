@@ -2,9 +2,11 @@ from flask import render_template, request, redirect, url_for, abort
 from . import main
 from ..requests import get_quotes, get_quotes1, get_quotes2, get_quotes3, get_quotes4
 from flask_login import login_required, current_user
-from ..models import User, NewBlog
+from app.models import User, NewBlog
 from . forms import UpdateProfile, BlogForm
-from ..import db, photos
+from app import db, photos, admin
+from flask_admin import BaseView, expose
+from flask_admin.contrib.sqla import ModelView
 
 @main.route('/')
 def index():
@@ -100,5 +102,17 @@ def createblog():
         return redirect(url_for('main.userblogpage'))
 
     return render_template('createblog.html', blog_form = form)
+
+
+
+@expose('/admin', methods=['GET', 'POST'])
+def administrator():
+
+
+    admin.add_view(ModelView(User, db.session))
+
+    return render_template('admin.html')
+
+
 
 
