@@ -23,26 +23,31 @@
             </ul>
             <div class="navbar navbar-nav navbar-right signlog d-inline">
                 {% if current_user.is_authenticated %}
-                <div class="nav-item dropdown mx-3" >
-                    <a href=""  class="nav-link dropdown-toggle user-action" data-bs-toggle="dropdown">
-                        <img src="{{url_for('static', filename='user.profile_pic_path')}}" class="avatar" alt="Avatar">
-                        <h5 class="d-inline">{{ current_user.username }} </h5>
-                        <!-- <b class="caret"></b> -->
-                    </a>
-                    <div class="dropdown-menu" style="position:absolute !important;">
-                        <a href="{{url_for('main.profile', uname=current_user.username)}}" class="dropdown-item">
-                            <i class="fa fa-user-o"></i>
-                            Profile
+                <div class="d-flex">
+                    <div class="my-auto mx-3 signout">
+                        <a href="{{url_for('main.createblog')}}" class="btn btn-primary "><i class="fa fa-plus" aria-hidden="true"></i> Add Blog</a>
+                    </div>
+                    <div class="nav-item dropdown mx-3" >
+                        <a href=""  class="nav-link dropdown-toggle user-action" data-bs-toggle="dropdown">
+                            <img src="{{url_for('static', filename='user.profile_pic_path')}}" class="avatar" alt="Avatar">
+                            <h5 class="d-inline">{{ current_user.username }} </h5>
+                            <!-- <b class="caret"></b> -->
                         </a>
-                        <a href="" class="dropdown-item">
-                            <i class="fa fa-user-o"></i>
-                            Messages
-                        </a>
-                        <div class="divider dropdown-divider"></div>
-                        <a href="{{url_for('auth.logout')}}" class="dropdown-item">
-                            <i class="material-icons">&#xE8AC;</i>
-                            Logout
-                        </a>
+                        <div class="dropdown-menu" style="position:absolute !important;">
+                            <a href="{{url_for('main.profile', uname=current_user.username)}}" class="dropdown-item">
+                                <i class="fa fa-user-o"></i>
+                                Profile
+                            </a>
+                            <a href="" class="dropdown-item">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                Messages
+                            </a>
+                            <div class="divider dropdown-divider"></div>
+                            <a href="{{url_for('auth.logout')}}" class="dropdown-item">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                Logout
+                            </a>
+                        </div>
                     </div>
                 </div>
                 {% else %}

@@ -18,6 +18,8 @@ class User(UserMixin, db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
 
+    blog = db.relationship('NewBlog', backref = 'user', lazy = 'dynamic')
+
 
     
 
@@ -56,3 +58,35 @@ class Role(db.Model):
 
     def __repr__(self):
         return f'User {self.name}'
+ 
+ # new blog
+class NewBlog(db.Model):
+    __tablename__ = "blog"
+
+    id = db.Column(db.Integer, primary_key = True)
+    blogtitle = db.Column(db.String(255))
+    myblog = db.Column(db.String)
+    postdate = db.Column(db.DateTime, default=datetime.utcnow)
+    author = db.Column(db.String(255))
+    category = db.Column(db.String(255))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+
+    votes = db.relationship('Vote', backref = 'newblog', lazy = 'dynamic')
+
+    def save_blog(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_blog(cls, id):
+        userblogs = NewBlog.query.filter_by(blog_id=id).all()
+        return userblogs
+
+class Vote(db.Model):
+    __tablename__ = "votes"
+
+    id = db.Column(db.Integer, primary_key = True)
+    blog_id = db.Column(db.Integer, db.ForeignKey("blog.id"))
+
+    def __repr__(self):
+        return f'User {self.id}'

@@ -2,8 +2,8 @@ from flask import render_template, request, redirect, url_for, abort
 from . import main
 from ..requests import get_quotes, get_quotes1, get_quotes2, get_quotes3, get_quotes4
 from flask_login import login_required, current_user
-from ..models import User
-from . forms import UpdateProfile
+from ..models import User, NewBlog
+from . forms import UpdateProfile, BlogForm
 from ..import db, photos
 
 @main.route('/')
@@ -27,7 +27,9 @@ def userblogpage():
     View userpage page function that returns the userpage page and its data
     ''' 
 
-    return render_template('userblogpage.html')
+    blog_body = NewBlog.query.all()
+
+    return render_template('userblogpage.html', blog_body=blog_body)
 
 #Display profile
 @main.route('/user/<uname>')
@@ -76,4 +78,27 @@ def updateppic(uname):
         db.session.commit()
 
     return redirect(url_for('main.profile', uname=uname))
+
+
+# Blog form
+
+@main.route('/createblog', methods = ['GET', 'POST'])
+@login_required
+def createblog():
+    '''
+    View userpage page function that returns the userpage page and its data
+    ''' 
+    form = BlogForm() 
+    if form.validate_on_submit():
+
+
+        upblog = NewBlog( blogtitle = form.title.data, myblog = form.name.data, author = form.author.data)
+
+        db.session.add(upblog)
+        db.session.commit()
+
+        return redirect(url_for('main.userblogpage'))
+
+    return render_template('createblog.html', blog_form = form)
+
 
