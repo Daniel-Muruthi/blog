@@ -23,13 +23,27 @@
             </ul>
             <div class="navbar navbar-nav navbar-right signlog d-inline">
                 {% if current_user.is_authenticated %}
-                <h4 class="d-inline">{{ current_user.username }} </h4>
-                <img src="../static/images/profile.png" alt="user ppic" height="50px" width="50px" class="d-inline">
-                <div class="my-auto mx-3 signout d-inline">
-                    <a href="{{url_for('main.profile', uname=current_user.username)}}" class="btn btn-primary ">View Profile</a>
-                </div>
-                <div class="my-auto mx-3 signout d-inline">
-                    <a href="{{url_for('auth.logout')}}" class="btn btn-primary ">Sign out</a>
+                <div class="nav-item dropdown mx-3" >
+                    <a href=""  class="nav-link dropdown-toggle user-action" data-bs-toggle="dropdown">
+                        <img src="{{url_for('static', filename='user.profile_pic_path')}}" class="avatar" alt="Avatar">
+                        <h5 class="d-inline">{{ current_user.username }} </h5>
+                        <!-- <b class="caret"></b> -->
+                    </a>
+                    <div class="dropdown-menu" style="position:absolute !important;">
+                        <a href="{{url_for('main.profile', uname=current_user.username)}}" class="dropdown-item">
+                            <i class="fa fa-user-o"></i>
+                            Profile
+                        </a>
+                        <a href="" class="dropdown-item">
+                            <i class="fa fa-user-o"></i>
+                            Messages
+                        </a>
+                        <div class="divider dropdown-divider"></div>
+                        <a href="{{url_for('auth.logout')}}" class="dropdown-item">
+                            <i class="material-icons">&#xE8AC;</i>
+                            Logout
+                        </a>
+                    </div>
                 </div>
                 {% else %}
                 <div class="my-auto mx-3 signup d-inline">
@@ -47,3 +61,19 @@
 </div>
 {% endblock %}
 </html>
+
+
+
+
+
+
+
+
+<!-- <h4 class="d-inline">{{ current_user.username }} </h4>
+<img src="../static/images/profile.png" alt="user ppic" height="50px" width="50px" class="d-inline">
+<div class="my-auto mx-3 signout d-inline">
+    <a href="{{url_for('main.profile', uname=current_user.username)}}" class="btn btn-primary ">View Profile</a>
+</div>
+<div class="my-auto mx-3 signout d-inline">
+    <a href="{{url_for('auth.logout')}}" class="btn btn-primary ">Sign out</a>
+</div> -->
