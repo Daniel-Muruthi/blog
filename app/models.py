@@ -1,3 +1,4 @@
+from flask_admin.contrib.sqla.view import ModelView
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -32,6 +33,9 @@ class User(UserMixin, db.Model):
 
     def verify_password(self, password):
         return check_password_hash(self.passcode, password)
+
+    def is_active(self):
+        return self.active
 
     def __repr__(self):
         return f'User {self.username}'
@@ -90,3 +94,5 @@ class Vote(db.Model):
 
     def __repr__(self):
         return f'User {self.id}'
+
+

@@ -4,9 +4,10 @@ from ..requests import get_quotes, get_quotes1, get_quotes2, get_quotes3, get_qu
 from flask_login import login_required, current_user
 from app.models import User, NewBlog
 from . forms import UpdateProfile, BlogForm
-from app import db, photos, admin
+from app import db, photos
 from flask_admin import BaseView, expose
 from flask_admin.contrib.sqla import ModelView
+
 
 @main.route('/')
 def index():
@@ -109,7 +110,7 @@ def createblog():
 def administrator():
 
 
-    admin.add_view(ModelView(User, db.session))
+
 
     return render_template('admin.html')
 

@@ -17,7 +17,7 @@ bootstrap = Bootstrap()
 db = SQLAlchemy()
 mail = Mail()
 simple = SimpleMDE()
-admin = Admin()
+
 
 #Uploading Images
 photos = UploadSet('photos', IMAGES)
@@ -37,7 +37,7 @@ def create_app(config_name):
 
     #Initializing Admin
 
-    admin.init_app(app)
+ 
 
     
     
