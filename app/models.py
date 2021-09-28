@@ -88,8 +88,8 @@ class NewBlog(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     blogtitle = db.Column(db.String)
     myblog = db.Column(db.String)
+    author = db.Column(db.String(255))
     postdate = db.Column(db.DateTime, default=datetime.utcnow)
-    category = db.Column(db.String(255))
     comments_blog = db.Column(db.String, db.ForeignKey('comments.comment'))
 
     def save_blog(self):
