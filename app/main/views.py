@@ -108,11 +108,11 @@ def createblog():
 
 @expose('/admin', methods=['GET', 'POST'])
 def administrator():
+    blog_body = NewBlog.query.all()
+
+    return render_template('userblogpage.html', blog_body=blog_body)
 
 
-
-
-    return render_template('admin.html')
 
 
 
